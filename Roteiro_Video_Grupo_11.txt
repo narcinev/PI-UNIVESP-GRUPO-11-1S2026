@@ -1,0 +1,254 @@
+═══════════════════════════════════════════════════════════
+  ROTEIRO DE VÍDEO — Pós-Graduação Brasil
+  Projeto Integrador I — UNIVESP — Grupo 11
+  Duração-alvo: 8 minutos
+═══════════════════════════════════════════════════════════
+
+NOTAS TÉCNICAS:
+- Grave em tela (screencast) com webcam no canto (ou só tela)
+- Use slides para introdução e problema
+- Mostre o app rodando ao vivo na parte de solução
+- Mínimo 5 min, máximo 10 min
+- Poste no YouTube (público ou não listado)
+- Link do vídeo vai na capa do relatório
+
+
+─────────────────────────────────────────────────────────
+BLOCO 1 — ABERTURA E IDENTIFICAÇÃO DO GRUPO
+(0:00 — 0:40)  ~40 segundos
+─────────────────────────────────────────────────────────
+
+[SLIDE 1 — Tela de abertura com logo UNIVESP + título do projeto]
+
+NARRAÇÃO:
+
+"Olá, somos o Grupo 11 do Projeto Integrador em Computação I
+da UNIVESP. Meu nome é [quem fala], e junto comigo estão:
+
+- Diogo Giorgi Rosa, de Capivari
+- Diógenes Juncken, de Campinas
+- Narci Edson Venturini, de Campinas
+- Paulo Henrique Eleuterio Falsetti, de Piracicaba
+- Diego Beran Ribeiro, de Campinas
+
+Nosso projeto se chama 'Pós-Graduação Brasil' — uma plataforma
+web georreferenciada de programas de pós-graduação no Brasil.
+Nossa orientadora é a professora Carla Maria da Silva Diaz."
+
+
+─────────────────────────────────────────────────────────
+BLOCO 2 — APRESENTAÇÃO DO PROBLEMA
+(0:40 — 2:30)  ~1 minuto e 50 segundos
+─────────────────────────────────────────────────────────
+
+[SLIDE 2 — Dados: "22% mais buscas", "33 milhões de pesquisas"]
+
+NARRAÇÃO:
+
+"Segundo pesquisa da Conquer Business School divulgada pela
+Carta Capital, as buscas por cursos de pós-graduação cresceram
+22% nos últimos 12 meses no Brasil, com mais de 33 milhões
+de pesquisas só no Google.
+
+A procura por 'especialização' cresceu 233%. O interesse é
+massivo — mas encontrar informações práticas é difícil."
+
+[SLIDE 3 — Prints do e-MEC e GEOCAPES lado a lado, com setas
+mostrando as limitações]
+
+"O problema central é a fragmentação das informações:
+
+- Especializações ficam no portal e-MEC, do Ministério da Educação.
+- Mestrados e doutorados ficam na plataforma Sucupira, da CAPES.
+- Cada um com nota de avaliação diferente, interface diferente,
+  dados em formatos diferentes.
+
+Se você quer saber 'quais programas de mestrado em robótica
+existem perto de mim, com nota acima de 4, e que estão com
+inscrições abertas?', simplesmente não dá pra fazer isso
+em nenhum lugar.
+
+As ferramentas oficiais são voltadas para gestão e estatísticas
+— não para o estudante que quer decidir onde fazer pós."
+
+
+─────────────────────────────────────────────────────────
+BLOCO 3 — APRESENTAÇÃO DA SOLUÇÃO
+(2:30 — 5:30)  ~3 minutos
+─────────────────────────────────────────────────────────
+
+[TELA — Abrir o app no navegador localhost:8000]
+
+NARRAÇÃO:
+
+"Para resolver isso, desenvolvemos o 'Pós-Graduação Brasil'
+— uma plataforma web que unifica os dados públicos da CAPES
+em um único lugar, com mapa interativo e filtros avançados."
+
+[DEMONSTRAÇÃO 1 — Mapa Interativo (tela inicial)]
+
+"Aqui é a página principal. Temos um mapa com 576 instituições
+de ensino superior e mais de 7.400 cursos de pós-graduação
+marcados geograficamente em todo o Brasil.
+
+Os marcadores se agrupam automaticamente — quando eu dou zoom
+em São Paulo, por exemplo, eles separam e mostram cada IES
+individualmente."
+
+[demonstrar zoom in/out, cluster expand]
+
+[DEMONSTRAÇÃO 2 — Filtros do Mapa]
+
+"Podemos filtrar por estado — vou selecionar SP. Veja que o
+mapa mostra só as instituições de São Paulo.
+
+Também dá pra filtrar por status jurídico — federal, estadual,
+municipal ou privada. E por modalidade: mestrado, doutorado
+ou especialização.
+
+Os filtros funcionam combinados. E tem busca textual — posso
+digitar 'UNICAMP' e filtrar direto."
+
+[demonstrar filtros combinados]
+
+[DEMONSTRAÇÃO 3 — Consulta]
+
+"Na aba 'Consulta', temos uma tabela com filtros avançados.
+Aqui dá pra pesquisar por estado, status e modalidade,
+e os resultados aparecem em tabela paginada — facilitando
+a comparação entre instituições."
+
+[mudar para /consulta/, demonstrar]
+
+[DEMONSTRAÇÃO 4 — Dashboard]
+
+"O Dashboard mostra estatísticas gerais: 576 IES cadastradas,
+7.488 cursos, 27 estados cobertos, 4 graus acadêmicos.
+
+Aqui temos gráficos interativos: IES por estado, distribuição
+por status jurídico, as 15 áreas de conhecimento mais ofertadas,
+e a nota média CAPES por estado.
+
+Também temos a distribuição por grau: 3.712 mestrados,
+2.763 doutorados, 849 mestrados profissionais e 164 doutorados
+profissionais."
+
+[mudar para /dashboard/, mostrar gráficos]
+
+
+─────────────────────────────────────────────────────────
+BLOCO 4 — TECNOLOGIAS E CONSTRUÇÃO
+(5:30 — 6:40)  ~1 minuto e 10 segundos
+─────────────────────────────────────────────────────────
+
+[SLIDE 4 — Diagrama da arquitetura: Django → MySQL → Leaflet]
+
+NARRAÇÃO:
+
+"A arquitetura segue o padrão MVT do Django, que é o framework
+Python que usamos para o backend.
+
+Do lado do servidor, temos o Django fazendo consultas SQL ao
+banco de dados MySQL, que contém os dados pré-processados.
+
+Do lado do cliente, usamos Bootstrap 5 para a interface
+responsiva, Leaflet.js com OpenStreetMap para os mapas,
+MarkerCluster para agrupamento de marcadores, e Chart.js
+para os gráficos do dashboard.
+
+Para os dados, partimos de CSVs públicos da CAPES com quase
+7.500 cursos. Desenvolvemos scripts Python para geolocalizar
+cada instituição via API do Google Maps e buscar as homepages
+via DuckDuckGo Search. Depois, tratamos acentuação, cedilhas
+e caracteres especiais para inserção no MySQL.
+
+Todo o código está versionado no GitHub, no repositório público
+do projeto, com branches separados para código, relatórios
+e banco de dados."
+
+[SLIDE 5 — Print do GitHub com o repo]
+
+
+─────────────────────────────────────────────────────────
+BLOCO 5 — IMPACTO E COMUNIDADE
+(6:40 — 7:30)  ~50 segundos
+─────────────────────────────────────────────────────────
+
+[SLIDE 6 — Prints do app + foto/ilustração de estudante no PC]
+
+NARRAÇÃO:
+
+"A plataforma foi validada em ambiente local e demonstra que
+é possível, com dados públicos e tecnologias acessíveis,
+criar uma ferramenta que simplifica a busca por pós-graduação.
+
+O público-alvo são estudantes de graduação que pretendem
+ingressar na pós-graduação, profissionais que buscam
+aperfeiçoamento, e pesquisadores em início de carreira.
+
+A integração das bases do MEC e da CAPES em um único local,
+com visualização geográfica e filtros combinados, resolve
+uma lacuna real: a dificuldade de encontrar e comparar
+programas de pós-graduação por critérios práticos como
+localização, área de pesquisa e avaliação.
+
+Nossa comunidade externa — colegas de universidade e
+profissionais consultados durante a fase de levantamento
+de requisitos — confirmou que esse tipo de ferramenta
+atende a uma demanda concreta."
+
+
+─────────────────────────────────────────────────────────
+BLOCO 6 — ENCERRAMENTO
+(7:30 — 8:00)  ~30 segundos
+─────────────────────────────────────────────────────────
+
+[SLIDE 7 — Tela final com título + link do GitHub + nomes]
+
+NARRAÇÃO:
+
+"Como trabalhos futuros, planejamos integrar os dados de
+especialização do MEC, incluir informações sobre editais
+e períodos de inscrição, e implantar a plataforma em
+servidor com acesso público pela internet.
+
+O projeto está disponível no GitHub — o link está na
+descrição deste vídeo e também na capa do nosso relatório.
+
+Obrigado pela atenção. Este foi o Projeto Integrador do
+Grupo 11 da UNIVESP. Até a próxima!"
+
+[TELA FINAL — 5 segundos de silêncio com o logo]
+
+
+═══════════════════════════════════════════════════════════
+  CHECKLIST DE GRAVAÇÃO
+═══════════════════════════════════════════════════════════
+
+[ ] App rodando em localhost:8000 (ou em servidor)
+[ ] Slides prontos (7 slides)
+[ ] Screencast configurado (OBS, Loom, ou gravador de tela)
+[ ] Webcam ligada (opcional, mas recomendado)
+[ ] Testar áudio antes de gravar
+[ ] Gravar em partes (bloco por bloco) e juntar depois
+[ ] Editar: cortar pausas longas, adicionar legenda se possível
+[ ] Postar no YouTube (público ou não listado)
+[ ] Copiar link do vídeo → colar na capa do relatório
+[ ] Copiar link do vídeo → colar na ficha técnica no AVA
+[ ] Enviar ficha técnica como PDF no AVA
+
+DICA: Grave cada bloco separado. Se errar, refaz aquele bloco.
+Junta tudo no editor (DaVinci Resolve é grátis, ou Movie Maker).
+Legenda automática do YouTube já ajuda muito.
+
+
+═══════════════════════════════════════════════════════════
+  CRITÉRIOS DE AVALIAÇÃO DO VÍDEO (do AVA)
+═══════════════════════════════════════════════════════════
+
+✅ Identificação do grupo — dados, título, membros → BLOCO 1
+✅ Apresentação do problema — relevância, tema Univesp → BLOCO 2
+✅ Apresentação da solução — funcionando ao vivo → BLOCO 3
+✅ Implementação na comunidade — impactos → BLOCO 5
+✅ Utilização de recursos — slides, tela do app → TODOS OS BLOCOS
+✅ Tempo — entre 5 e 10 minutos → ~8 min (OK)
